@@ -17,6 +17,15 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+
+                <configuration>
+                    <mainClass>main.Main</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -51,6 +60,7 @@
                     <artifactId>netty-all</artifactId>
                 </exclusion>
             </exclusions>
+
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.jdeferred/jdeferred-core -->
