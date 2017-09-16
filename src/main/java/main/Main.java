@@ -1,19 +1,16 @@
 package main;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.sshaddicts.lucrecium.imageProcessing.ImageProcessor;
 import com.github.sshaddicts.neuralclient.AuthenticatedClient;
 import com.github.sshaddicts.neuralclient.Client;
 import com.github.sshaddicts.neuralclient.ConnectedClient;
-import com.github.sshaddicts.neuralclient.data.History;
 import com.github.sshaddicts.neuralclient.data.ProcessedData;
 import org.opencv.core.Core;
 import rx.functions.Action1;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -24,15 +21,13 @@ public class Main implements CustomView{
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
-    public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
+    public static void main(String[] args) {
         final String cred = "test";
         final Main main = new Main();
 
         final ImageProcessor processor = new ImageProcessor("file.png");
 
-        CompletableFuture<History> done = new CompletableFuture<>();
-
-        Client testClient = new Client("ws://192.168.0.111:7778", "api");
+        Client testClient = new Client("ws://localhost:7778", "api");
 
         testClient.getConnected().subscribe(new Action1<ConnectedClient>() {
             @Override
@@ -55,18 +50,13 @@ public class Main implements CustomView{
             }
         }, (Throwable e) -> e.printStackTrace());
 
-
-        done.get(5, TimeUnit.SECONDS).getItems().forEach((ProcessedData hist) -> {
-            System.out.println("---------");
-            hist.getItems().forEach((ObjectNode data) ->  {
-                System.out.println("[" +  data.get("name").textValue() + "]" +
-                        " [" + data.get("price").asDouble() + "]");
-            });
-
-        });
-
-
         testClient.connect();
+
+        try {
+            Thread.currentThread().join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
