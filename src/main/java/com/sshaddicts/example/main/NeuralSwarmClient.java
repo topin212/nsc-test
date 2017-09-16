@@ -1,4 +1,4 @@
-package main;
+package com.sshaddicts.example.main;
 
 import com.github.sshaddicts.neuralclient.AuthenticatedClient;
 import com.github.sshaddicts.neuralclient.Client;

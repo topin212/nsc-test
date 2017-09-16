@@ -1,4 +1,4 @@
-package main;
+package com.sshaddicts.example.main;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.sshaddicts.lucrecium.imageProcessing.ImageProcessor;
@@ -11,9 +11,6 @@ import rx.functions.Action1;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class Main implements CustomView{
 
@@ -27,7 +24,7 @@ public class Main implements CustomView{
 
         final ImageProcessor processor = new ImageProcessor("file.png");
 
-        Client testClient = new Client("ws://localhost:7778", "api");
+        Client testClient = new Client("ws://192.168.0.114:7778", "api");
 
         testClient.getConnected().subscribe(new Action1<ConnectedClient>() {
             @Override

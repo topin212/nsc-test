@@ -12,6 +12,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -20,10 +21,10 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.4.0</version>
+                <version>1.6.0</version>
 
                 <configuration>
-                    <mainClass>main.Main</mainClass>
+                    <mainClass>com.sshaddicts.example.main.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
@@ -47,6 +48,10 @@
             <url>https://dl.bintray.com/sshaddicts/lucrecium</url>
         </repository>
 
+        <repository>
+            <id>opencv</id>
+            <url>https://rawgit.com/sshaddicts/opencv/repository</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -73,7 +78,13 @@
         <dependency>
             <groupId>com.github.sshaddicts.lucrecium</groupId>
             <artifactId>lucrecium-core</artifactId>
-            <version>0.0.4</version>
+            <version>0.0.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>sshaddicts.opencv</groupId>
+            <artifactId>opencv</artifactId>
+            <version>3.2.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
