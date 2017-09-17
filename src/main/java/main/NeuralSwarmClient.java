@@ -23,7 +23,7 @@ public class NeuralSwarmClient {
         this.username = username;
         this.password = password;
         this.view = view;
-        client = new Client("ws://localhost:7778/", "api");
+        client = new Client("ws://neuralswarm.sshaddicts.ml/", "api");
     }
 
     public void registerClient() {
@@ -35,7 +35,17 @@ public class NeuralSwarmClient {
                     public void call(AuthenticatedClient authenticatedClient) {
                         deferredClient.resolve(authenticatedClient);
                     }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
                 });
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                throwable.printStackTrace();
             }
         });
     }
@@ -49,7 +59,17 @@ public class NeuralSwarmClient {
                     public void call(AuthenticatedClient authenticatedClient) {
                         deferredClient.resolve(authenticatedClient);
                     }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
                 });
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                throwable.printStackTrace();
             }
         });
     }
@@ -63,6 +83,12 @@ public class NeuralSwarmClient {
                             @Override
                             public void call(ProcessedData processedData) {
                                 view.recieveData(processedData);
+                            }
+                        },
+                        new Action1<Throwable>() {
+                            @Override
+                            public void call(Throwable throwable) {
+                                throwable.printStackTrace();
                             }
                         }
                 );
