@@ -4,6 +4,7 @@ import com.github.sshaddicts.neuralclient.AuthenticatedClient;
 import com.github.sshaddicts.neuralclient.Client;
 import com.github.sshaddicts.neuralclient.ConnectedClient;
 import com.github.sshaddicts.neuralclient.data.ProcessedData;
+import com.github.sshaddicts.neuralclient.encoding.CommonBase64Coder;
 import org.jdeferred.Deferred;
 import org.jdeferred.DoneCallback;
 import org.jdeferred.impl.DeferredObject;
@@ -23,7 +24,7 @@ public class NeuralSwarmClient {
         this.username = username;
         this.password = password;
         this.view = view;
-        client = new Client("ws://neuralswarm.sshaddicts.ml/", "api");
+        client = new Client("ws://neuralswarm.sshaddicts.ml/", "api", new CommonBase64Coder());
     }
 
     public void registerClient() {

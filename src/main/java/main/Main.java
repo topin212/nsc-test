@@ -2,8 +2,11 @@ package main;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.sshaddicts.lucrecium.imageProcessing.ImageProcessor;
+import com.github.sshaddicts.lucrecium.imageProcessing.Imshow;
 import com.github.sshaddicts.neuralclient.data.ProcessedData;
-import org.opencv.core.Core;
+import org.apache.commons.io.FileUtils;
+import org.opencv.core.*;
+import org.opencv.imgcodecs.Imgcodecs;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,11 +17,13 @@ public class Main implements CustomView{
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         final String cred = "test";
         final Main main = new Main();
 
-        final ImageProcessor processor = new ImageProcessor("numbers31.jpg");
+        final byte[] bytes = FileUtils.readFileToByteArray(new File("numbers31.jpg"));
+
+        final ImageProcessor processor = new ImageProcessor(bytes, 0,0);
 
         NeuralSwarmClient client = new NeuralSwarmClient("test", "test", main);
 
